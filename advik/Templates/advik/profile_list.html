@@ -1,0 +1,50 @@
+
+{% extends 'base.html' %}
+<ul>
+    {% for follower in profile.followed_by.all %}
+    <li>{{ follower }}</li>
+    {% endfor %}
+</ul>
+<ul>
+    {% for following in profile.follows.all %}
+    <li>{{ following }}</li>
+    {% endfor %}
+</ul>
+
+
+{% block content %}
+
+<div class = "column">
+
+{% for profile in profiles %}
+
+    <div class = "block">
+        <div class = "card">
+            <a href = "{% url 'advik:profile' profile.id %}">
+                <div class = "card-content">
+                    <div class = "media">
+                        <div class = "media-left">
+                            <figure class = "image is - 48 x 48">
+                                <img src = "http://bulma.io/images/placeholders/96x96.png"
+                                     alt = "Placeholder image">
+                            </figure>
+                        </div>
+                        <div class = "media-content">
+                            <p class = "title is-4">
+                                {{ profile.user.username }}
+                            </p>
+                            <p class = "subtitle is-6">
+                                @{{profile.user.username | lower}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+{% endfor %}
+
+</div>
+
+{% endblock content %}
